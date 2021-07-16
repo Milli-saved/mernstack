@@ -1,34 +1,35 @@
 import React from "react";
 import { useEffect } from "react";
 import { navigate } from "@reach/router";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAsync } from "../store/Recruiter/action";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { loginError, token } = useSelector((state) => state.recruiter);
+  // const history = useHistory();
+  const { loginError,user, token } = useSelector((state) => state.recruiter);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     history.push("/signin");
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (token) {
+      navigate("/loggedin")
+      console.log(token)
+    }
+  }, [token]);
 
-  let user = {
+  let userInput = {
     email: null,
     password: null,
   };
   const emailHandler = (event) => {
-    user.email = event.target.value;
+    userInput.email = event.target.value;
   };
   const passwordHandler = (event) => {
-    user.password = event.target.value;
+    userInput.password = event.target.value;
   };
   const submitHandler = () => {
     // console.log(user);
-    dispatch(loginAsync(user.email, user.password));
+    dispatch(loginAsync(userInput.email, userInput.password));
   };
 
   const createNewHandler = () => {

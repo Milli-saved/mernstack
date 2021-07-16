@@ -2,10 +2,13 @@ import React from "react";
 import EachApplication from "./EachApplication";
 import { navigate } from "@reach/router";
 import { useDispatch, useSelector } from "react-redux";
+
 import "./loader.css";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const { loginError,user, token } = useSelector((state) => state.recruiter);
+console.log(token)
 
   const itemClickedHandler=(id)=>{
     navigate(`/applicationdescription/${id}`)

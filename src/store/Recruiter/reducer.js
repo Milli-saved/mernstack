@@ -39,6 +39,12 @@ const reducer = (state = INITIAL_STATE, action) => {
         loginLoading: false,
         loginError: action.payload.error,
       };
+    case RecruiterActionTypes.LOGOUT:
+      return {
+        ...state,
+        token: null,
+        user: null
+      }
     default:
       return state;
   }

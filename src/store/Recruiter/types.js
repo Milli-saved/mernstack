@@ -2,5 +2,10 @@ export const RecruiterActionTypes = {
     //Login
     LOGIN_START : "LOGIN_START",
     LOGIN_SUCCESS : "LOGIN_SUCCESS",
-    LOGIN_ERROR: "LOGIN_ERROR"
+    LOGIN_ERROR: "LOGIN_ERROR",
+    LOGOUT: "LOGOUT",
+    //signup
+    SIGNUP_START: "SIGNUP_START",
+    SIGNUP_SUCCESS: "SIGNUP_SUCCESS",
+    SIGNUP_ERROR: "SIGNUP_ERROR"
 }

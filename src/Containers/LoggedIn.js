@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { navigate, Link } from "@reach/router";
 
 import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../store/Recruiter/action"
 
 // import axios from "axios";
 import UserApplications from "./userApplications";
@@ -9,7 +10,7 @@ import "./loader.css";
 
 const Loggedin = () => {
   const dispatch = useDispatch();
-
+  const {token,user} = useSelector((state)=> state.recruiter)
   const { item, loading } = useSelector((state) => state.application);
   // state = {
   //   name: "Million",
@@ -19,8 +20,14 @@ const Loggedin = () => {
   const clickedForDetailHandler = (id) => {
     navigate(`/detailForUser/${id}`);
   };
+  useEffect(()=>{
+    if(!token){
+      navigate("/")
+    }
+    console.log(token)
+  })
   const loggedOutHandler = (event) => {
-    localStorage.removeItem("token");
+    logOut()
     navigate("/");
   };
   //   componentDidMount() {
@@ -58,7 +65,7 @@ const Loggedin = () => {
     <div className="pushDown">
       <div className="row">
         <div className="col l10 m8 s12">
-          <h3>Welcome to KH-Ecommerce system mr. </h3>
+          <h3>Welcome to the Applicant Tracker {user.email} </h3>
           <div className="row">
             <Link
               to="/addnewapplication"
